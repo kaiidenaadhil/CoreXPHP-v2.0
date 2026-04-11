@@ -1,0 +1,15 @@
+CREATE TABLE `media` (
+`mediaId` INT  PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`referenceType` ENUM('blog', 'caseStudy', 'project', 'contact', 'jobposts', 'userAvater')  NOT NULL,
+`referenceId` INT  NOT NULL,
+`fileName` VARCHAR(255)  NOT NULL,
+`fileUrl` VARCHAR(500)  NOT NULL,
+`mimeType` VARCHAR(255)  NOT NULL,
+`uploadedBy` INT  NOT NULL,
+`isMain` BOOLEAN  NOT NULL,
+`description` VARCHAR(500)  NOT NULL,
+`mediumCreatedAt` TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`mediumUpdatedAt` TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+`mediumIdentify` VARCHAR(50)  NOT NULL,
+FOREIGN KEY (`uploadedBy`) REFERENCES `users`(`userId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

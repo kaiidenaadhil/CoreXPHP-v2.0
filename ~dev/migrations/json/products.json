@@ -1,0 +1,10 @@
+{
+    "productId": "integer|primary_key|auto_increment",
+    "productName": "string|nullable",
+    "productPrice": "decimal|decimal:|nullable",
+    "productImage": "file|file:*",
+    "productCategory": "enum|enum:digital,physical",
+    "productCreatedAt": "timestamp",
+    "productUpdatedAt": "timestamp",
+    "productIdentify": "string|max:50"
+}

@@ -1,0 +1,13 @@
+{
+    "registrationId": "integer|primary_key|auto_increment",
+    "workshopId": "integer|foreign:workshops:workshopId",
+    "fullName": "string|max:150",
+    "email": "string|max:150",
+    "phone": "string|max:50",
+    "ticketType": "enum|enum:Free,Standard,VIP",
+    "paymentStatus": "enum|enum:Pending,Paid,Cancelled",
+    "registeredAt": "timestamp|default:CURRENT_TIMESTAMP",
+    "workshopregistrationCreatedAt": "timestamp",
+    "workshopregistrationUpdatedAt": "timestamp",
+    "workshopregistrationIdentify": "string|max:50"
+}

@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * CoreXPHP - Craft Command Line Interface
+ * * এটি টার্মিনাল বা কমান্ড লাইন থেকে ফ্রেমওয়ার্ক কন্ট্রোল করার টুল।
+ */
+
+// ১. এরর রিপোর্টিং এবং রুট ডিরেক্টরি সেটআপ
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+define('ROOT_DIR', __DIR__);
+
+// ২. অটোলোডার এবং কনফিগারেশন ইনক্লুড করা
+require_once ROOT_DIR . '/vendor/autoload.php';
+require_once ROOT_DIR . '/app/init.php';
+
+// ৩. টার্মিনাল থেকে ইউজারের কমান্ড রিসিভ করা (যেমন: php craft migrate)
+// $argv হলো পিএইচপি-র ডিফল্ট অ্যারে যা টার্মিনালের ইনপুটগুলো ধরে রাখে।
+$command = $argv[1] ?? 'list';
+
+// ৪. কমান্ড অনুযায়ী অ্যাকশন নেওয়া
+switch ($command) {
+    case 'list':
+        echo "\033[32mCoreXPHP Craft CLI\033[0m - Version 1.0.0\n\n";
+        echo "\033[33mAvailable commands:\033[0m\n";
+        echo "  \033[32mlist\033[0m              Show all available commands\n";
+        echo "  \033[32mmigrate\033[0m           Run database migrations\n";
+        echo "  \033[32mmake:controller\033[0m   Create a new controller class\n";
+        echo "  \033[32mmake:model\033[0m        Create a new model class\n";
+        break;
+
+    case 'migrate':
+        // এখানে আমরা মাইগ্রেশন ক্লাসের কল বসাবো
+        echo "\033[33mMigrating database...\033[0m\n";
+        echo "\033[32m[OK] Migrations will be implemented in the next step!\033[0m\n";
+        break;
+
+    default:
+        echo "\033[31mError:\033[0m Command '{$command}' is not defined.\n";
+        echo "Type 'php craft list' to see available commands.\n";
+        break;
+}

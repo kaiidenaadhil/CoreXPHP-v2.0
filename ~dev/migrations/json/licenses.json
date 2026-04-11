@@ -1,0 +1,11 @@
+{
+    "id": "integer|primary_key|auto_increment",
+    "licenseKey": "string",
+    "liveDomain": "string|nullable",
+    "localDomain": "string|nullable",
+    "expiresAt": "timestamp|default:CURRENT_TIMESTAMP",
+    "status": "enum|enum:active,expired,revoked",
+    "licenseCreatedAt": "timestamp",
+    "licenseUpdatedAt": "timestamp",
+    "licenseIdentify": "string|max:50"
+}

@@ -1,0 +1,14 @@
+{
+    "applicationId": "integer|primary_key|auto_increment",
+    "jobId": "integer|foreign:jobposts:jobId",
+    "fullName": "string",
+    "email": "string",
+    "phone": "string",
+    "resume": "file|file:*",
+    "coverLetter": "string",
+    "applicationStatus": "enum|enum:Pending,Reviewed,Shortlisted,Rejected,Hired",
+    "appliedAt": "timestamp|default:CURRENT_TIMESTAMP",
+    "jobapplicationCreatedAt": "timestamp",
+    "jobapplicationUpdatedAt": "timestamp",
+    "jobapplicationIdentify": "string|max:50"
+}

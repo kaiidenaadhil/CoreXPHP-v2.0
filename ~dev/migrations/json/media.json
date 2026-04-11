@@ -1,0 +1,14 @@
+{
+    "mediaId": "integer|primary_key|auto_increment",
+    "referenceType": "enum|enum:blog,caseStudy,project,contact,jobposts,userAvater",
+    "referenceId": "integer",
+    "fileName": "string|max:255",
+    "fileUrl": "string|max:500",
+    "mimeType": "string|max:255",
+    "uploadedBy": "integer|foreign:users:userId",
+    "isMain": "boolean",
+    "description": "string|max:500",
+    "mediumCreatedAt": "timestamp",
+    "mediumUpdatedAt": "timestamp",
+    "mediumIdentify": "string|max:50"
+}

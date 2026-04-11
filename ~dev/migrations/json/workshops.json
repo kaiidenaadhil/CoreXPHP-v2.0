@@ -1,0 +1,16 @@
+{
+    "workshopId": "integer|primary_key|auto_increment",
+    "title": "string|max:150|nullable",
+    "category": "string|max:100|nullable",
+    "location": "string|max:100|nullable",
+    "workshopType": "enum|enum:Online,Offline,Hybrid",
+    "startDate": "timestamp|default:CURRENT_TIMESTAMP|nullable",
+    "endDate": "timestamp|default:CURRENT_TIMESTAMP|nullable",
+    "description": "string|max:5000|nullable",
+    "price": "boolean",
+    "maxSeats": "integer|nullable",
+    "isActive": "boolean",
+    "workshopCreatedAt": "timestamp",
+    "workshopUpdatedAt": "timestamp",
+    "workshopIdentify": "string|max:50"
+}

@@ -1,0 +1,19 @@
+{
+    "blogId": "integer",
+    "title": "string|max:255",
+    "slug": "string|max:255",
+    "summary": "string",
+    "content": "string",
+    "category": "string|max:100",
+    "tags": "string|max:255",
+    "authorId": "integer|foreign:users:userId",
+    "viewCount": "integer|max:11",
+    "isFeatured": "boolean",
+    "isPublished": "boolean",
+    "publishedAt": "timestamp|default:CURRENT_TIMESTAMP",
+    "metaTitle": "string|max:255",
+    "metaDescription": "string",
+    "blogCreatedAt": "timestamp",
+    "blogUpdatedAt": "timestamp",
+    "blogIdentify": "string|max:50"
+}

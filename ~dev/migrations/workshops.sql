@@ -1,0 +1,16 @@
+CREATE TABLE `workshops` (
+`workshopId` INT  PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`title` VARCHAR(150)  NULL,
+`category` VARCHAR(100)  NULL,
+`location` VARCHAR(100)  NULL,
+`workshopType` ENUM('Online', 'Offline', 'Hybrid')  NOT NULL,
+`startDate` TIMESTAMP  NULL,
+`endDate` TIMESTAMP  NULL,
+`description` VARCHAR(5000)  NULL,
+`price` BOOLEAN  NOT NULL,
+`maxSeats` INT  NULL,
+`isActive` BOOLEAN  NOT NULL,
+`workshopCreatedAt` TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`workshopUpdatedAt` TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+`workshopIdentify` VARCHAR(50)  NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

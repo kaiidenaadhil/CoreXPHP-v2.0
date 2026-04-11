@@ -1,0 +1,16 @@
+{
+    "testId": "integer|primary_key|auto_increment",
+    "testString": "string|max:250",
+    "testTimestamp": "timestamp|default:CURRENT_TIMESTAMP",
+    "testEnum": "enum|enum:value1, value2",
+    "testBoolean": "boolean",
+    "testFloat": "float|float:10,2",
+    "testDecimal": "decimal|decimal:10,2",
+    "testDouble": "double|double:10,2",
+    "testJSON": "json|nullable",
+    "testFile": "file|file:jpg",
+    "testForeignKey": "integer|foreign:users:userId",
+    "testCreatedAt": "timestamp",
+    "testUpdatedAt": "timestamp",
+    "testIdentify": "string|max:50"
+}

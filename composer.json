@@ -1,0 +1,22 @@
+{
+    "name": "kaiidenaadhil/corexphp",
+    "description": "CoreXPHP MVC Framework",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.0",
+        "phpmailer/phpmailer": "^6.9",
+        "firebase/php-jwt": "^6.11"
+    },
+    "autoload": {
+        "files": [
+            "app/core/Function.php"
+        ],
+        "classmap": [
+            "app/core/",
+            "app/controllers/",
+            "app/middlewares/",
+            "app/models/",
+            "app/services/"
+        ]
+    }
+}

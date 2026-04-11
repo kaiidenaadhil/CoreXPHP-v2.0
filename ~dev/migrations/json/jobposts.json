@@ -1,0 +1,17 @@
+{
+    "jobId": "integer|primary_key|auto_increment",
+    "jobTitle": "string|nullable",
+    "department": "string|nullable",
+    "location": "string|nullable",
+    "jobType": "enum|enum:Full-time,Part-time,Contract,Internship",
+    "salaryRange": "string|max:100|nullable",
+    "requirements": "string|max:2000|nullable",
+    "responsibilities": "string|max:2000|nullable",
+    "benefits": "string|max:1000|nullable",
+    "isActive": "boolean",
+    "postedBy": "integer|foreign:users:userId",
+    "postedAt": "timestamp|default:CURRENT_TIMESTAMP",
+    "jobpostCreatedAt": "timestamp",
+    "jobpostUpdatedAt": "timestamp",
+    "jobpostIdentify": "string|max:50"
+}

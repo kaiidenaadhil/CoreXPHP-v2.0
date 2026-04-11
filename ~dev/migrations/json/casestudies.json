@@ -1,0 +1,18 @@
+{
+    "caseStudyId": "integer|primary_key|auto_increment",
+    "title": "string|max:255|nullable",
+    "slug": "string|max:255|nullable",
+    "clientName": "string|max:150|nullable",
+    "industry": "string|max:150|nullable",
+    "summary": "string|max:1000|nullable",
+    "challenges": "string|max:1000|nullable",
+    "solution": "string|max:1000|nullable",
+    "results": "string|max:1000|nullable",
+    "content": "string|max:5000|nullable",
+    "authorId": "integer|foreign:users:userId",
+    "isPublished": "boolean",
+    "publishedAt": "timestamp|default:CURRENT_TIMESTAMP",
+    "casestudyCreatedAt": "timestamp",
+    "casestudyUpdatedAt": "timestamp",
+    "casestudyIdentify": "string|max:50"
+}
