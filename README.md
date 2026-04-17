@@ -41,3 +41,83 @@ CoreXPHP/
 ├── craft                 # The CLI Executable
 ├── composer.json
 └── README.md
+
+
+
+# CoreXPHP-v2.0 Framework Upgrade Roadmap
+
+This document outlines the 6 major features to be integrated into the CoreXPHP engine to achieve enterprise-grade performance, security, and communication.
+
+---
+
+## 1. Database Transactions
+**Purpose:** Ensures data integrity by treating multiple SQL operations as a single unit. (All-or-nothing approach).
+- **Target Class:** `QueryBuilder.php` or `Database.php`
+- **Functions to Implement:**
+    - `beginTransaction()`: Starts the manual transaction mode.
+    - `commit()`: Saves all changes made during the transaction.
+    - `rollBack()`: Undoes all changes if an error occurs.
+
+---
+
+## 2. Relationship Eager Loading (`with`)
+**Purpose:** Solves the N+1 query problem by fetching related data in a single query instead of multiple loops.
+- **Target Class:** `QueryBuilder.php`
+- **Functions to Implement:**
+    - `with($relations)`: Sets the relations to be eager-loaded.
+    - `loadRelation($results, $relation)`: Internal logic to map related data to the primary models.
+- **Update Required:** `get()` method to check for eager-loading requests before returning results.
+
+---
+
+## 3. Query Caching
+**Purpose:** Improves response time by storing expensive database results in temporary storage (File/Redis).
+- **Target Class:** `QueryBuilder.php`
+- **Functions to Implement:**
+    - `remember(int $seconds)`: Sets the TTL (Time-To-Live) for the query cache.
+    - `generateCacheKey()`: Generates a unique MD5 hash based on the SQL and its bindings.
+- **Update Required:** `get()` method to check for a valid cache file before hitting the database.
+
+---
+
+## 4. CSRF Protection
+**Purpose:** Protects web forms from Cross-Site Request Forgery attacks.
+- **Target Class:** `Request.php` & `Session.php`
+- **Functions to Implement:**
+    - `generateCsrfToken()`: Creates and stores a token in the user session.
+    - `csrfToken()`: Helper to output the hidden input field in HTML views.
+    - `validateCsrfToken()`: Middleware-level check to verify the incoming token against the session.
+
+---
+
+## 5. Role-Based Access Control (RBAC)
+**Purpose:** Manages user permissions and access levels (Admin, Vendor, Customer).
+- **Target Class:** `UserModel.php` & `Middleware`
+- **Functions to Implement:**
+    - `hasRole($role)`: Checks if the user belongs to a specific group.
+    - `can($permission)`: Checks if the user is authorized for a specific action (e.g., `edit_product`).
+    - `assignRole($role)`: Helper to update user roles.
+
+---
+
+## 6. Mail & Notification Engine
+**Purpose:** Handles outgoing communications like order confirmations and password resets.
+- **Target Class:** `Mail.php` (New Core Class)
+- **Functions to Implement:**
+    - `to($email)`: Sets the recipient address.
+    - `subject($title)`: Sets the email subject.
+    - `view($template, $data)`: Renders an HTML template for the email body.
+    - `send()`: Executes the mailing process (using SMTP or PHP mail).
+
+---
+
+## 🚀 Summary Table for Developers
+
+| Feature | Primary File | Core Methods |
+| :--- | :--- | :--- |
+| **Transactions** | `QueryBuilder` | `beginTransaction`, `commit`, `rollBack` |
+| **Eager Loading** | `QueryBuilder` | `with`, `loadRelation` |
+| **Query Caching** | `QueryBuilder` | `remember`, `get` (update) |
+| **CSRF** | `Request` | `csrfToken`, `validateCsrfToken` |
+| **RBAC** | `UserModel` | `hasRole`, `can` |
+| **Mail Engine** | `Mail` | `to`, `subject`, `view`, `send` |

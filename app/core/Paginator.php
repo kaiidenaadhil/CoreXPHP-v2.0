@@ -11,14 +11,17 @@ class Paginator
         $this->totalRecords = $totalRecords;
         $this->currentPage = $currentPage;
         $this->perPage = $perPage;
-        $this->totalPages = ceil($totalRecords / $perPage);
+        // মোট পেজ বের করার সূত্র (যেমন: ২১টি ডেটা, ১০টি করে দেখালে পেজ হবে ৩টি)
+        $this->totalPages = ceil($totalRecords / $perPage); 
     }
 
+    // ডাটাবেস থেকে কত নম্বর ডেটা থেকে দেখানো শুরু হবে তা বের করা (OFFSET)
     public function getOffset()
     {
         return ($this->currentPage - 1) * $this->perPage;
     }
 
+    // প্রতি পেজে কয়টি করে ডেটা দেখাবে তা বের করা (LIMIT)
     public function getLimit()
     {
         return $this->perPage;
@@ -34,6 +37,10 @@ class Paginator
         return $this->currentPage;
     }
 
+    /**
+     * 🔴 API এর জন্য সবচেয়ে জরুরি মেথড:
+     * এটি JSON রেসপন্সে পাঠানোর জন্য মেটা (Meta) ডেটার অ্যারে রিটার্ন করে।
+     */
     public function getPaginationData()
     {
         return [
@@ -44,15 +51,16 @@ class Paginator
         ];
     }
 
+    // URL এর সাথে নতুন পেজ নম্বর যুক্ত করা (যেমন: ?search=book&page=2)
     public function getPageUrl($page)
     {
         $url = $_SERVER['REQUEST_URI'];
         $query = parse_url($url, PHP_URL_QUERY);
 
-        // Remove existing page parameters from the URL
+        // URL থেকে পুরনো page=... অংশটুকু মুছে ফেলা
         $url = preg_replace('/&?page=\d+/', '', $url);
 
-        // Append the new page parameter to the URL
+        // নতুন পেজ নম্বর যুক্ত করা
         if ($query) {
             $url .= '&page=' . $page;
         } else {
@@ -61,6 +69,10 @@ class Paginator
         return $url;
     }
 
+    /**
+     * 🔴 Web এর জন্য সবচেয়ে জরুরি মেথড:
+     * এটি সরাসরি Bootstrap স্টাইলের HTML পেজিনেশন বাটন তৈরি করে দেয়।
+     */
     public function render()
     {
         $html = '<ul class="pagination">';

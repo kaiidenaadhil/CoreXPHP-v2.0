@@ -1,18 +1,8 @@
-[2026-04-11 17:24:24] [ERROR] include(C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\vendor\composer/../../app/controllers/HomeController.php): Failed to open stream: No such file or directory
-[2026-04-11 17:24:24] [ERROR] File: C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\vendor\composer\ClassLoader.php Line: 576
-[2026-04-11 17:24:24] [ERROR] Trace: #0 C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\vendor\composer\ClassLoader.php(576): App->handleError(2, 'include(C:\\User...', 'C:\\Users\\Lenovo...', 576)
-#1 C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\vendor\composer\ClassLoader.php(576): include()
-#2 C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('C:\\Users\\Lenovo...')
-#3 C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\app\core\Router.php(108): Composer\Autoload\ClassLoader->loadClass('HomeController')
-#4 C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\app\core\Router.php(129): Router->{closure}(Object(Request))
-#5 C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\app\core\App.php(99): Router->resolve()
-#6 C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\public\index.php(24): App->run()
-#7 {main}
-[2026-04-11 17:26:06] [ERROR] Using $this when not in object context
-[2026-04-11 17:26:06] [ERROR] File: C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\app\routes\web.php Line: 13
-[2026-04-11 17:26:06] [ERROR] Trace: #0 C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\public\index.php(20): require_once()
-#1 {main}
-[2026-04-11 17:32:32] [ERROR] Using $this when not in object context
-[2026-04-11 17:32:32] [ERROR] File: C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\app\routes\web.php Line: 13
-[2026-04-11 17:32:32] [ERROR] Trace: #0 C:\Users\Lenovo X1 Carbon\Desktop\CoreXPHP-v2.0\public\index.php(20): require_once()
-#1 {main}
+[2026-04-16 19:16:57] [ERROR] Undefined variable $router
+[2026-04-16 19:16:57] [ERROR] File: C:\Users\Aminul Islam\Desktop\CoreXPHP-v2.0\app\routes\web.php Line: 3
+[2026-04-16 19:16:57] [ERROR] Trace: #0 C:\Users\Aminul Islam\Desktop\CoreXPHP-v2.0\app\routes\web.php(3): App->handleError(2, 'Undefined varia...', 'C:\\Users\\Aminul...', 3)
+#1 C:\Users\Aminul Islam\Desktop\CoreXPHP-v2.0\app\core\App.php(72): require_once('C:\\Users\\Aminul...')
+#2 C:\Users\Aminul Islam\Desktop\CoreXPHP-v2.0\app\core\Router.php(36): App->{closure}(Object(Router))
+#3 C:\Users\Aminul Islam\Desktop\CoreXPHP-v2.0\app\core\App.php(71): Router->group('', Array, Object(Closure))
+#4 C:\Users\Aminul Islam\Desktop\CoreXPHP-v2.0\public\index.php(34): App->loadWebRoutes('C:\\Users\\Aminul...')
+#5 {main}

@@ -6,7 +6,7 @@ define('ROOT', dirname(__DIR__));
 
 // ২. এনভায়রনমেন্ট ভেরিয়েবল (.env ফাইল) লোড করা
 // প্রজেক্টের সেনসিটিভ ডেটা (যেমন: পাসওয়ার্ড, এপিআই কি) সুরক্ষিত রাখতে .env ফাইল থেকে ডেটা রিড করা হচ্ছে।
-$envFile = ROOT . '/config/.env';
+$envFile = ROOT . '/app/config/.env';
 if (file_exists($envFile)) {
     // INI_SCANNER_RAW ব্যবহার করা হয়েছে যাতে পাসওয়ার্ড বা স্ট্রিংয়ে থাকা স্পেশাল ক্যারেক্টার নষ্ট না হয়।
     $_ENV = parse_ini_file($envFile, false, INI_SCANNER_RAW);
@@ -24,7 +24,7 @@ define('ASSETS', APP_URL . "/assets/" . THEME); // সিএসএস, জেএ
 // ৪. ডেটাবেস কনফিগারেশন (Database Constants)
 define('DB_TYPE', $_ENV["DB_CONNECTION"] ?? 'mysql');
 define('DB_HOST', $_ENV["DB_HOST"] ?? '127.0.0.1');
-define('DB_NAME', $_ENV["DB_DATABASE"] ?? ''); // ডেটাবেসের নাম
+define('DB_NAME', $_ENV["DB_DATABASE"]); // ডেটাবেসের নাম
 define('DB_USER', $_ENV["DB_USERNAME"] ?? 'root');
 define('DB_PASS', $_ENV["DB_PASSWORD"] ?? ''); // XAMPP-এর ক্ষেত্রে সাধারণত ফাঁকা থাকে
 

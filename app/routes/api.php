@@ -1,15 +1,38 @@
 <?php
 
-/**
- * ==============================================================================
- * COREXPHP API ROUTING - MASTER TEST
- * ==============================================================================
- * [বাংলা] 
- * এই ফাইলটি এপিআই রাউটিং এবং JSON রেসপন্স টেস্ট করার জন্য তৈরি।
- */
+// ==============================================================================
+// 🔌 COREXPHP API SERIALIZATION TESTING MATRIX (Tests 1-8)
+// ==============================================================================
+$app->router->group('', [], function($router) {
+    
+    // Phase 1: Basic Serialization & CRUD
+    $router->get('/1-get-all', [ApiTestController::class, 'testGetAllUsers']);
+    $router->get('/2-get-one', [ApiTestController::class, 'testGetSingleUser']);
+    $router->get('/3-create', [ApiTestController::class, 'testCreateProduct']);
+    $router->get('/4-not-found', [ApiTestController::class, 'testNotFound']);
+    $router->get('/5-pagination', [ApiTestController::class, 'testPagination']);
+    
+    // Phase 2: Advanced Queries & Relationships
+    $router->get('/6-paginate', [ApiTestController::class, 'testNewPagination']);
+    $router->get('/7-relations', [ApiTestController::class, 'testApiRelationships']);
+    $router->get('/8-complex', [ApiTestController::class, 'testComplexQueryApi']);
 
-/** @var \App\Core\App $app */
-$app = $this;
+    // Phase 3: Validation, I/O & Destructive
+    $router->get('/9-validate', [ApiTestController::class, 'testApiValidation']);
+    $router->get('/10-security', [ApiTestController::class, 'testApiMassAssignment']);
+    $router->get('/11-import', [ApiTestController::class, 'testApiCsvImport']);
+    $router->get('/12-truncate', [ApiTestController::class, 'testApiTruncate']);
+    $router->get('/13-export', [ApiTestController::class, 'testApiExport']);
+    
+});
+
+
+
+
+
+
+
+
 
 // ১. বেসিক স্ট্যাটাস চেক (URL: /api/status)
 $app->router->get('/status', [ApiTestController::class, 'status']);
@@ -58,3 +81,18 @@ $app->router->group('/v1', [AuthMiddleware::class], function($router) {
         return $res->json(['message' => 'সেটিংস আপডেট সফল হয়েছে!']);
     });
 });
+
+// Auth Routes
+$app->router->post('/auth/register', [AuthController::class, 'register']);
+$app->router->post('/auth/login', [AuthController::class, 'login']); 
+$app->router->get('/auth/profile', [ProfileController::class, 'index'], [AuthMiddleware::class]);
+$app->router->post('/auth/forgot-password', [AuthController::class, 'forgotPassword']);
+$app->router->post('/auth/reset-password', [AuthController::class, 'resetPassword']);
+// Profile Update Route (এই রাউটে অ্যাক্সেস করতে অবশ্যই লগিন টোকেন লাগবে)
+$app->router->post('/auth/profile/update', [ProfileController::class, 'update'], [AuthMiddleware::class]);
+
+$app->router->get('/products', [ProductController::class, 'index']);
+$app->router->get('/products/{id}', [ProductController::class, 'show']);
+$app->router->post('/products', [ProductController::class, 'store']);
+$app->router->put('/products/{id}', [ProductController::class, 'update']);
+$app->router->delete('/products/{id}', [ProductController::class, 'delete']);

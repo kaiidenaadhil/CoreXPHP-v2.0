@@ -1,61 +1,141 @@
 <?php
 
-/**
- * ==============================================================================
- * COREXPHP ROUTING ENGINE - MASTER TEST ROUTES
- * ==============================================================================
- * * Co-authored by : Md Aminul Islam & Gemini (Google AI)
- * * এই ফাইলে সব ধরনের রাউট টেস্ট করার জন্য শুধুমাত্র WebTestController ব্যবহার করা হয়েছে।
- * ==============================================================================
- */
+$app->router->group('/model-test', [], function($router) {
 
-/** @var \App\Core\App $app */
-$app = $this; 
+    $router->get('/create-find', [ModelTestController::class, 'testCreateFind']);
+    $router->get('/save-update', [ModelTestController::class, 'testSaveUpdate']);
+    $router->get('/delete', [ModelTestController::class, 'testDelete']);
+    $router->get('/findall', [ModelTestController::class, 'testFindAll']);
 
-// ১. বেসিক এবং স্ট্যাটিক রাউটস
-$app->router->get('/', [WebTestController::class, 'index']);
-$app->router->get('/home', [WebTestController::class, 'home']);
-$app->router->get('/admin', [WebTestController::class, 'adminDashboard']);
+    $router->get('/query', [ModelTestController::class, 'testQuery']);
+    $router->get('/call-static', [ModelTestController::class, 'testCallStatic']);
+    $router->get('/fill', [ModelTestController::class, 'testFill']);
 
-$app->router->get('/welcome', function () {
-    return 'Welcome to CodeXPHP World, a place where core PHP is used to create dynamic apps.';
+    $router->get('/relations', [ModelTestController::class, 'testRelationships']);
+    $router->get('/hasone', [ModelTestController::class, 'testHasOne']);
+
+    $router->get('/truncate', [ModelTestController::class, 'testTruncate']); // ⚠️
 });
-$app->router->get('/about', 'about'); // ভিউ ফাইল লোড করবে
+// ==============================================================================
+// 🌐 COREXPHP WEB DATABASE DEBUGGING ROUTES
+// ==============================================================================
+
+$app->router->group('/web-test', [], function($router) {
+    $router->get('/truncate', [MarketplaceController::class, 'testTruncate']);
+    $router->get('/import', [MarketplaceController::class, 'testImport']);
+    $router->get('/export', [MarketplaceController::class, 'testExport']);
+    $router->get('/validate', [MarketplaceController::class, 'testValidation']);
+
+$router->get('/belongs-to-many', [MarketplaceController::class, 'testBelongsToMany']);
+
+$router->get('/product-vendor', [MarketplaceController::class, 'testProductVendor']);
+$router->get('/user-orders', [MarketplaceController::class, 'testUserOrders']);
+$router->get('/delete-cascade', [MarketplaceController::class, 'testDeleteCascade']);
+$router->get('/where-query', [MarketplaceController::class, 'testWhereQuery']);
+$router->get('/search-filter', [MarketplaceController::class, 'testSearchFilter']);
+$router->get('/revenue', [MarketplaceController::class, 'testRevenue']);
+$router->get('/api-json', [MarketplaceController::class, 'testApiFormat']);
 
 
-// ২. ডায়নামিক এবং নেস্টেড রাউটস
-$app->router->get('/user/{id}', [WebTestController::class, 'showProfile']);
-$app->router->get('/page/{slug}', [WebTestController::class, 'showPage']);
-$app->router->get('/post/{postId}/comment/{commentId}', [WebTestController::class, 'showComment']);
 
-
-// ৩. অ্যাডভান্সড সিম্বল রাউটস
-$app->router->get('/profile/@{username}', [WebTestController::class, 'showUserProfile']);
-$app->router->get('/collections/~{collectionId}', [WebTestController::class, 'showCollection']);
-
-
-// ৪. রিসোর্স রাউটস (CRUD)
-// এটি WebTestController এর ভেতরে থাকা index, create, store, show, edit, update, destroy কল করবে
-$app->router->resource('products', 'product', WebTestController::class);
-
-
-/**
- * এডমিন গ্রুপের সব রাউটে AuthMiddleware প্রয়োগ করা হয়েছে।
- * URL: /admin/settings?token=123
- */
-$app->router->group('/admin', [AuthMiddleware::class], function($router) {
+// Core Test 1: Create & Find
+    $router->get('/core-test-1', [MarketplaceController::class, 'testCreateAndFind']);
     
-    $router->get('/settings', function() {
-        return "<h1>Admin Settings</h1><p>টোকেন সঠিক তাই আপনি এখানে আসতে পেরেছেন।</p>";
+    // 1. Basic Retrieval
+    $router->get('/users', [MarketplaceController::class, 'getUsers']);
+    
+    // 2. Products with Vendor Names (Single JOIN)
+    $router->get('/products', [MarketplaceController::class, 'getProducts']);
+    
+    // 3. Detailed Orders (Multi-JOIN)
+    $router->get('/orders', [MarketplaceController::class, 'getOrders']);
+    
+    // 4. Dashboard Analytics (Aggregates)
+    $router->get('/analytics', [MarketplaceController::class, 'getAnalytics']);
+    // 5. Active Record Update
+    $router->get('/update-user', [MarketplaceController::class, 'testUpdate']);
+    
+    // 6. Model Relationships
+    $router->get('/relationships', [MarketplaceController::class, 'testRelationships']);
+    
+    // 7. Pagination & Sorting
+    $router->get('/pagination', [MarketplaceController::class, 'testPagination']);
+});
+// ==============================================================================
+// 📦 COREXPHP GROUP ROUTING TESTING MATRIX
+// ==============================================================================
+
+// ---------------------------------------------------------
+// 1. BASIC GROUP (Prefix Only, No Middleware)
+// ---------------------------------------------------------
+$app->router->group('/public-group', [], function($router) {
+    
+    // Test 1: Group + Closure (URL: /public-group/closure)
+    $router->get('/closure', function(Request $request, Response $response) {
+        return $response->json(['scenario' => 'Group + Closure', 'status' => 'Success']);
     });
 
-    $router->get('/profile', [WebTestController::class, 'adminDashboard']);
+    // Test 2: Group + Controller (URL: /public-group/controller)
+    $router->get('/controller', [GroupTestController::class, 'basicInfo']);
+
+});
+
+// ---------------------------------------------------------
+// 2. SECURE GROUP (Prefix + Middleware applied to all routes inside)
+// ---------------------------------------------------------
+$app->router->group('/secure-group', [CheckMiddleware::class], function($router) {
+    
+    // Test 3: Secured Group + Closure (URL: /secure-group/closure)
+    $router->get('/closure', function(Request $request, Response $response) {
+        return $response->json(['scenario' => 'Secured Group + Closure', 'status' => 'Passed']);
+    });
+
+    // Test 4: Secured Group + Controller (URL: /secure-group/controller)
+    $router->get('/controller', [GroupTestController::class, 'secureInfo']);
+
 });
 
 
-// রাউট ডিফাইন করা
-$app->router->get('/test-pipeline', [UserController::class, 'profile'], [
-    FirstMiddleware::class,
-    SecondMiddleware::class,
-    ThirdMiddleware::class
-]);
+// ==============================================================================
+// 🧪 COREXPHP ARCHITECTURE TESTING MATRIX
+// ==============================================================================
+
+// ---------------------------------------------------------
+// 1. CLOSURE ONLY (No Controller, No Model, No Middleware)
+// ---------------------------------------------------------
+$app->router->get('/matrix/1', function(Request $request, Response $response) {
+    return $response->json(['scenario' => '1. Pure Closure', 'status' => 'Success']);
+});
+
+// ---------------------------------------------------------
+// 2. CLOSURE + MIDDLEWARE (No Controller, No Model)
+// ---------------------------------------------------------
+$app->router->get('/matrix/2', function(Request $request, Response $response) {
+    return $response->json(['scenario' => '2. Closure + Middleware', 'status' => 'Passed Security']);
+}, [CheckMiddleware::class]);
+
+// ---------------------------------------------------------
+// 3. CONTROLLER ONLY (No Model, No Middleware)
+// ---------------------------------------------------------
+$app->router->get('/matrix/3', [MatrixController::class, 'basic']);
+
+// ---------------------------------------------------------
+// 4. CONTROLLER + MIDDLEWARE (No Model)
+// ---------------------------------------------------------
+$app->router->get('/matrix/4', [MatrixController::class, 'basic'], [CheckMiddleware::class]);
+
+// ---------------------------------------------------------
+// 5. CONTROLLER + MODEL/DB (No Middleware)
+// ---------------------------------------------------------
+$app->router->get('/matrix/5', [MatrixController::class, 'withDatabase']);
+
+// ---------------------------------------------------------
+// 6. THE FULL STACK (Middleware -> Controller -> Model/DB)
+// ---------------------------------------------------------
+$app->router->get('/matrix/6', [MatrixController::class, 'withDatabase'], [CheckMiddleware::class]);
+
+// ---------------------------------------------------------
+// 7. VIEW ONLY (Direct String Rendering)
+// ---------------------------------------------------------
+// Make sure you have a file at app/views/matrix_view.php
+$app->router->get('/matrix/7', 'matrix_view');
