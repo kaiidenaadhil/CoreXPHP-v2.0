@@ -1,6 +1,7 @@
 {
     "name": "kaiidenaadhil/corexphp",
     "description": "CoreXPHP MVC Framework",
+    "type": "project",
     "license": "MIT",
     "require": {
         "php": ">=8.0",
@@ -17,6 +18,11 @@
             "app/middlewares/",
             "app/models/",
             "app/services/"
+        ]
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "@php -r \"file_exists('app/config/.env') || copy('app/config/local.env', 'app/config/.env');\""
         ]
     }
 }
