@@ -3,6 +3,10 @@
 </p>
 
 <p align="center">
+  <h1 align="center">⚡ <strong><span style="color: #3B82F6;">CoreX</span><span style="color: #A1A5B7;">PHP</span></strong></h1>
+</p>
+
+<p align="center">
   <strong>The zero-overhead PHP framework engineered for speed and scale.</strong>
 </p>
 
@@ -14,9 +18,9 @@
 
 ---
 
-> **CoreXPHP** is a revolutionary, zero-overhead PHP framework that eliminates configuration fatigue through intelligent schema detection and autonomous auto-wiring. Built from the ground up for absolute performance, it achieves sub-millisecond execution times while maintaining a strict, enterprise-grade MVC architecture.
+> <strong><span style="color: #3B82F6;">CoreX</span><span style="color: #A1A5B7;">PHP</span></strong> is a revolutionary, zero-overhead PHP framework that eliminates configuration fatigue through intelligent schema detection and autonomous auto-wiring. Built from the ground up for absolute performance, it achieves sub-millisecond execution times while maintaining a strict, enterprise-grade MVC architecture.
 
-Unlike traditional frameworks that rely on deep, memory-heavy namespace nesting, CoreXPHP utilizes direct Composer Classmap autoloading and runtime reflection. It is natively dual-purpose—perfect for serving Server-Side Rendered (SSR) web portals or stateless JSON APIs for modern JavaScript frontends (React/Vue).
+Unlike traditional frameworks that rely on deep, memory-heavy namespace nesting, <strong><span style="color: #3B82F6;">CoreX</span><span style="color: #A1A5B7;">PHP</span></strong> utilizes direct Composer Classmap autoloading and runtime reflection. It is natively dual-purpose—perfect for serving Server-Side Rendered (SSR) web portals or stateless JSON APIs for modern JavaScript frontends (React/Vue).
 
 ## ✨ Key Features
 
@@ -31,11 +35,11 @@ Unlike traditional frameworks that rely on deep, memory-heavy namespace nesting,
 
 ## 📦 Quick Start
 
-CoreXPHP is incredibly lightweight. You can scaffold a completely functional, secure web application in seconds.
+<strong><span style="color: #3B82F6;">CoreX</span><span style="color: #A1A5B7;">PHP</span></strong> is incredibly lightweight. You can scaffold a completely functional, secure web application in seconds.
 
 ### Installation
 
-Use Composer to create a new CoreXPHP project:
+Use Composer to create a new <strong><span style="color: #3B82F6;">CoreX</span><span style="color: #A1A5B7;">PHP</span></strong> project:
 
 ```bash
 composer create-project kaiidenaadhil/corexphp my-app
