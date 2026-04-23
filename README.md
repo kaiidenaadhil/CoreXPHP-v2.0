@@ -3,10 +3,6 @@
 </p>
 
 <p align="center">
-  <h1 align="center">⚡ <strong><span style="color: #3B82F6;">CoreX</span><span style="color: #A1A5B7;">PHP</span></strong></h1>
-</p>
-
-<p align="center">
   <strong>The zero-overhead PHP framework engineered for speed and scale.</strong>
 </p>
 
@@ -36,6 +32,8 @@ Unlike traditional frameworks that rely on deep, memory-heavy namespace nesting,
 ## 📦 Quick Start
 
 <strong><span style="color: #3B82F6;">CoreX</span><span style="color: #A1A5B7;">PHP</span></strong> is incredibly lightweight. You can scaffold a completely functional, secure web application in seconds.
+
+
 
 ### Installation
 
